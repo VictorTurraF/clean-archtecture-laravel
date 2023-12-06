@@ -1,0 +1,56 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: victorturra
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: lara-clean-arch-app
+    container_name: lara-clean-arch-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - lara-clean-arch
+
+  db:
+    image: mysql:8.0
+    container_name: lara-clean-arch-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DOCKER_DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DOCKER_DB_ROOT_PASSWORD}
+      MYSQL_PASSWORD: ${DOCKER_DB_PASSWORD}
+      MYSQL_USER: ${DOCKER_DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d # Volume de configuração de inicialização do mysql
+      - lara-clean-arch-data:/var/lib/mysql # Volume de dados do container
+    networks:
+      - lara-clean-arch
+    ports:
+      - "3306:3306"
+
+
+  nginx:
+    image: nginx:alpine
+    container_name: lara-clean-arch-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - lara-clean-arch
+
+volumes:
+  lara-clean-arch-data:
+
+networks:
+  lara-clean-arch:
+    driver: bridge
