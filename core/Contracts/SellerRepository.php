@@ -10,4 +10,6 @@ interface SellerRepository {
 
     public function existsByEmail(): bool;
 
+    public function all(): array;
+
 }
