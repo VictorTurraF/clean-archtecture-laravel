@@ -14,6 +14,9 @@
         <testsuite name="Core Unit">
             <directory>core/Tests/Unit</directory>
         </testsuite>
+        <testsuite name="Core Feature">
+            <directory>core/Tests/Feature</directory>
+        </testsuite>
     </testsuites>
     <source>
         <include>
