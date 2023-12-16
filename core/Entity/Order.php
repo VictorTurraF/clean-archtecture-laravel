@@ -9,7 +9,7 @@ class Order
     private $id;
     private OrderProps $props;
 
-    public function __construct(array $props, string $id)
+    public function __construct(array $props, string $id = null)
     {
         $this->props = new OrderProps(
             $props['seller_id'],
