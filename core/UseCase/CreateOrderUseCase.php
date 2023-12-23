@@ -4,16 +4,17 @@ namespace Core\UseCase;
 
 use Core\Contracts\Repository\OrderRepository;
 use Core\Contracts\Repository\SellerRepository;
+use Core\Contracts\UseCase;
 use Core\Entity\Order;
 use Core\Exceptions\SellerNotFoundError;
 
-class CreateOrderUseCase {
+class CreateOrderUseCase implements UseCase {
     public function __construct(
         private SellerRepository $sellerRepo,
         private OrderRepository $orderRepo
     ) {}
 
-    public function execute($input)
+    public function execute($input): mixed
     {
         if ($this->sellerRepo->existsById($input['seller_id']))
             throw new SellerNotFoundError();
