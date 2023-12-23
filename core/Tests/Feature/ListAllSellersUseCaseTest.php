@@ -2,7 +2,7 @@
 
 namespace Core\Tests\Feature;
 
-use Core\Contracts\SellerRepository;
+use Core\Contracts\Repository\SellerRepository;
 use Core\Entity\Seller;
 use Core\UseCase\ListAllSellersUseCase;
 use PHPUnit\Framework\TestCase;
