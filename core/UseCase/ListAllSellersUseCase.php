@@ -2,7 +2,7 @@
 
 namespace Core\UseCase;
 
-use Core\Contracts\SellerRepository;
+use Core\Contracts\Repository\SellerRepository;
 use Core\Contracts\UseCase;
 use Core\Entity\Seller;
 
