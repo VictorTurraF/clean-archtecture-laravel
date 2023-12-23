@@ -6,7 +6,7 @@ use Core\Entity\Seller;
 
 interface SellerRepository {
 
-    public function save(): Seller;
+    public function save(Seller $seller): Seller;
 
     public function existsByEmail(string $sellerEmail): bool;
 
