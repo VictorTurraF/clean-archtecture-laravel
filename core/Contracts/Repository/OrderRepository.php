@@ -12,4 +12,6 @@ interface OrderRepository {
 
     function save($input): Order;
 
+    function findBySellerId($sellerId): array;
+
 }
