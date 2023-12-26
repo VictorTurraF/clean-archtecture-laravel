@@ -14,4 +14,6 @@ interface OrderRepository {
 
     function findBySellerId($sellerId): array;
 
+    function findByFilters(array $filters): array;
+
 }
