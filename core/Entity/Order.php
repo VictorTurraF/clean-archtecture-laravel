@@ -25,6 +25,11 @@ class Order
         $this->id = $newId;
     }
 
+    public function getPriceInCents()
+    {
+        return $this->props->priceInCents->getInCents();
+    }
+
     public function toArray()
     {
         return [
