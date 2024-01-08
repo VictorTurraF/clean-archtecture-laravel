@@ -34,7 +34,7 @@ class SellerSalesReportTest extends TestCase
         $totalCommission = 200;
 
         // Act & Assert
-        $this->expectException(TotalCommissionPriceIsInvalidError::class);
+        $this->expectException(TotalSoldPriceIsInvalidError::class);
         new SellerSalesReport($totalSold, $totalCommission);
     }
 
@@ -45,7 +45,7 @@ class SellerSalesReportTest extends TestCase
         $totalCommission = 'invalid_price';
 
         // Act & Assert
-        $this->expectException(TotalSoldPriceIsInvalidError::class);
+        $this->expectException(TotalCommissionPriceIsInvalidError::class);
         new SellerSalesReport($totalSold, $totalCommission);
     }
 }

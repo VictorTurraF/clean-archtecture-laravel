@@ -23,7 +23,7 @@ class SellerSalesReport {
         try {
             return new Price($totalSold);
         } catch (PriceIsInvalidError $e) {
-            throw new TotalCommissionPriceIsInvalidError($e->getMessage());
+            throw new TotalSoldPriceIsInvalidError($e->getMessage());
         }
     }
 
@@ -31,7 +31,7 @@ class SellerSalesReport {
         try {
             return new Price($totalCommission);
         } catch (PriceIsInvalidError $e) {
-            throw new TotalSoldPriceIsInvalidError($e->getMessage());
+            throw new TotalCommissionPriceIsInvalidError($e->getMessage());
         }
     }
 }
