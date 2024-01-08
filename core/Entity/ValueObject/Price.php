@@ -3,7 +3,6 @@
 namespace Core\Entity\ValueObject;
 
 use Core\Exceptions\PriceIsInvalidError;
-use NumberFormatter;
 
 class Price {
     private int $amountInCents;
@@ -27,7 +26,7 @@ class Price {
         }
 
         if (!is_int($amountInCents)) {
-            throw new PriceIsInvalidError("Valor de preço informado de ser do tipo numérico.");
+            throw new PriceIsInvalidError("Valor de preço informado deve ser do tipo numérico.");
         }
 
         if ($amountInCents < 0) {
