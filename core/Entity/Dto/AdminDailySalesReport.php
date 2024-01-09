@@ -31,9 +31,16 @@ class AdminDailySalesReport {
 
     private function validateAndCreateAdminEmail($adminEmail) {
         try {
-            return new Price($adminEmail);
+            return new Email($adminEmail);
         } catch (EmailIsInvalidError $e) {
             throw new AdminEmailIsInvalidError($e->getMessage());
         }
+    }
+
+    public function toArray() {
+        return [
+            'total_sold' => $this->totalSold,
+            'admin_email' => $this->adminEmail
+        ];
     }
 }
