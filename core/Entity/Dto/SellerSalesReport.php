@@ -34,4 +34,12 @@ class SellerSalesReport {
             throw new TotalCommissionPriceIsInvalidError($e->getMessage());
         }
     }
+
+    public function toArray()
+    {
+        return [
+            "total_sold" => $this->totalSold,
+            "total_commission" => $this->totalCommission
+        ];
+    }
 }
