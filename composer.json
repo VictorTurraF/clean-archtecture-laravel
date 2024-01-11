@@ -48,7 +48,10 @@
             "@php artisan key:generate --ansi"
         ],
         "test-core": [
-            "./vendor/bin/phpunit --display-warnings"
+            "./vendor/bin/phpunit --testsuite='Core Unit','Core Feature'"
+        ],
+        "test-app": [
+            "./vendor/bin/phpunit --testsuite='Unit','Feature'"
         ]
     },
     "extra": {
