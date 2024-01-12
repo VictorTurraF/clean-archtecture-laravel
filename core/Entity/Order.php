@@ -37,11 +37,11 @@ class Order
             'seller_id' => $this->props->sellerId,
             'price' => [
                 'in_cents' => $this->props->priceInCents->getInCents(),
-                'formatted' => $this->props->priceInCents
+                'formatted' => (string) $this->props->priceInCents
             ],
             'payment_approved_at' => [
                 'iso_date' => $this->props->paymentApprovedAt->getIsoDate(),
-                'formatted' => $this->props->paymentApprovedAt
+                'formatted' => (string) $this->props->paymentApprovedAt
             ]
         ];
     }

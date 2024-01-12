@@ -28,8 +28,8 @@ class Seller {
     public function toArray() {
         return [
             'id' => $this->id,
-            'name' => $this->props->name,
-            'email' => $this->props->email
+            'name' => (string) $this->props->name,
+            'email' => (string) $this->props->email
         ];
     }
 }
