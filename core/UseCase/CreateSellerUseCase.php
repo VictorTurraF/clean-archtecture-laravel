@@ -19,7 +19,7 @@ class CreateSellerUseCase implements UseCase
             throw new SellerAlreadyExistsError();
 
 
-        $createdSeller = $this->sellerRepo->save(
+        $createdSeller = $this->sellerRepo->create(
             new Seller([
                 "name" => $input['name'],
                 "email" => $input['email'],

@@ -42,7 +42,7 @@ class CreateSellerUseCaseTest extends TestCase
 
         $sellerRepositoryStub
             ->expects($this->once())
-            ->method('save')
+            ->method('create')
             ->willReturn($createdSeller);
 
         $createSellerUseCase = new CreateSellerUseCase($sellerRepositoryStub);
