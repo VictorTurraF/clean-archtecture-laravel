@@ -17,14 +17,14 @@ services:
       - lara-clean-arch
 
   db:
-    image: mysql:8.0
+    image: mysql
     container_name: lara-clean-arch-db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: ${DOCKER_DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DOCKER_DB_ROOT_PASSWORD}
-      MYSQL_PASSWORD: ${DOCKER_DB_PASSWORD}
-      MYSQL_USER: ${DOCKER_DB_USERNAME}
+      MYSQL_DATABASE: "lara-clean-arch-db"
+      MYSQL_ROOT_PASSWORD: "root_pwd"
+      MYSQL_PASSWORD: "lara-clean-arch"
+      MYSQL_USER: "lara-clean-arch-pwd"
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
