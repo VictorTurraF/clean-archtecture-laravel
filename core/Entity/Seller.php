@@ -25,6 +25,10 @@ class Seller {
         return $this->id;
     }
 
+    public function props() {
+        return $this->props;
+    }
+
     public function toArray() {
         return [
             'id' => $this->id,
