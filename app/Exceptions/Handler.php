@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Core\Exceptions\SellerAlreadyExistsError;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +28,12 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof SellerAlreadyExistsError) {
+            return new JsonResponse(['message' => $exception->getMessage()], 400);
+        }
     }
 }
