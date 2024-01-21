@@ -12,6 +12,42 @@ class SellerControllerTest extends TestCase
     use RefreshDatabase;
     use WithFaker;
 
+    public function testIndexEndpointListsAllSellers()
+    {
+        // Create some sellers in the database for testing
+        $seller1 = Seller::factory()->create();
+        $seller2 = Seller::factory()->create();
+        $seller3 = Seller::factory()->create();
+
+        // Send a GET request to the /api/sellers endpoint
+        $response = $this->getJson('/api/seller');
+
+        // Assert that the response has a status code of 200 OK
+        // and contains the expected JSON structure with the sellers' data
+        $response->assertStatus(200)
+            ->assertJson([
+                [
+                    'id' => $seller1->id,
+                    'name' => $seller1->name,
+                    'email' => $seller1->email,
+                    // Add other attributes as needed
+                ],
+                [
+                    'id' => $seller2->id,
+                    'name' => $seller2->name,
+                    'email' => $seller2->email,
+                    // Add other attributes as needed
+                ],
+                [
+                    'id' => $seller3->id,
+                    'name' => $seller3->name,
+                    'email' => $seller3->email,
+                    // Add other attributes as needed
+                ],
+            ]);
+    }
+
+
     public function testStoreEndpointCreatesSeller()
     {
         $sellerData = [
@@ -56,5 +92,4 @@ class SellerControllerTest extends TestCase
                 'message' => 'Já existe um vendedor cadastrado com este email'
             ]);
     }
-
 }
