@@ -11,7 +11,7 @@ class ListAllSellersUseCase implements UseCase {
         private SellerRepository $sellerRepo
     ) {}
 
-    public function execute($input): mixed
+    public function execute($input = []): mixed
     {
         $allSellers = $this->sellerRepo->all();
 

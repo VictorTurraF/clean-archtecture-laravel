@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSellerRequest;
 use Core\UseCase\CreateSellerUseCase;
+use Core\UseCase\ListAllSellersUseCase;
 
 class SellerController extends Controller
 {
+    public function index(
+        ListAllSellersUseCase $useCase,
+    ) {
+        $result = $useCase->execute();
 
-    public function index()
-    {
-        //
+        return response()->json($result, 200);
     }
 
     public function store(
