@@ -25,7 +25,7 @@ class CreateOrderUseCase implements UseCase {
             'payment_approved_at' => $input['payment_approved_at'],
         ]);
 
-        $createdOrder = $this->orderRepo->save($order);
+        $createdOrder = $this->orderRepo->create($order);
 
         return $createdOrder->toArray();
     }

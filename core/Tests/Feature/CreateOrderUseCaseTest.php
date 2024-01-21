@@ -25,7 +25,7 @@ class CreateOrderUseCaseTest extends TestCase
         $orderRepositoryMock = $this->createMock(OrderRepository::class);
         $orderRepositoryMock
             ->expects($this->once())
-            ->method('save')
+            ->method('create')
             ->with($order)
             ->willReturn($order);
 
