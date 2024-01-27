@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Tests\Unit\UseCase;
+namespace Core\Tests\Feature;
 
 use Core\Contracts\DateHelper;
 use Core\Contracts\Repository\OrderRepository;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Tests\Unit;
+namespace Core\Tests\Feature;
 
 use Core\Contracts\Repository\OrderRepository;
 use Core\Contracts\Repository\SellerRepository;
