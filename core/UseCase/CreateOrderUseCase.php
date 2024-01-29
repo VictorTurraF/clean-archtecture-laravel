@@ -16,7 +16,7 @@ class CreateOrderUseCase implements UseCase {
 
     public function execute($input): mixed
     {
-        if ($this->sellerRepo->existsById($input['seller_id']))
+        if (!$this->sellerRepo->existsById($input['seller_id']))
             throw new SellerNotFoundError();
 
         $order = new Order([
@@ -24,7 +24,6 @@ class CreateOrderUseCase implements UseCase {
             'price_in_cents' => $input['price_in_cents'],
             'payment_approved_at' => $input['payment_approved_at'],
         ]);
-
         $createdOrder = $this->orderRepo->create($order);
 
         return $createdOrder->toArray();

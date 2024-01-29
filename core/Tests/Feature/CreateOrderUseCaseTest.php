@@ -14,7 +14,7 @@ class CreateOrderUseCaseTest extends TestCase
         $sellerRepositoryStub = $this->createMock(SellerRepository::class);
         $sellerRepositoryStub
             ->method('existsById')
-            ->willReturn(false);
+            ->willReturn(true);
 
         $order = new Order([
             'seller_id' => '1234567',
@@ -45,7 +45,7 @@ class CreateOrderUseCaseTest extends TestCase
         $sellerRepositoryStub = $this->createMock(SellerRepository::class);
         $sellerRepositoryStub
             ->method('existsById')
-            ->willReturn(true);
+            ->willReturn(false);
 
         $orderRepositoryMock = $this->createMock(OrderRepository::class);
 
