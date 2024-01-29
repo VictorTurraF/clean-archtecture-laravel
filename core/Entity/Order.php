@@ -30,6 +30,11 @@ class Order
         return $this->props->priceInCents->getInCents();
     }
 
+    public function props()
+    {
+        return $this->props;
+    }
+
     public function toArray()
     {
         return [
