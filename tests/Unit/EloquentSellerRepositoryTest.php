@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\External\Repository\EloquentSellerRepository;
 use Core\Entity\Seller as CoreSeller;
+use PHPUnit\Framework\Attributes\Depends;
 
 class EloquentSellerRepositoryTest extends TestCase
 {
@@ -39,6 +40,7 @@ class EloquentSellerRepositoryTest extends TestCase
         // Add assertions for other attributes
     }
 
+    #[Depends('testCreateSeller')]
     public function testExistsByEmail()
     {
         $sellerEmail = 'john@example.com';
@@ -54,6 +56,7 @@ class EloquentSellerRepositoryTest extends TestCase
         $this->assertTrue($this->repository->existsByEmail($sellerEmail));
     }
 
+    #[Depends('testCreateSeller')]
     public function testAllSellers()
     {
         // Create multiple sellers
@@ -72,6 +75,7 @@ class EloquentSellerRepositoryTest extends TestCase
         $this->assertEquals($seller2->toArray(), $allSellers[1]->toArray());
     }
 
+    #[Depends('testCreateSeller')]
     public function testExistsById()
     {
         // Create a new seller
