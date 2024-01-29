@@ -6,7 +6,7 @@ use Core\Entity\Dto\OrderProps;
 
 class Order
 {
-    private $id;
+    private string|null $id;
     private OrderProps $props;
 
     public function __construct(array $props, string $id = null)
@@ -39,7 +39,7 @@ class Order
     {
         return [
             'id' => $this->id,
-            'seller_id' => $this->props->sellerId,
+            'seller_id' => (string) $this->props->sellerId,
             'price' => [
                 'in_cents' => $this->props->priceInCents->getInCents(),
                 'formatted' => (string) $this->props->priceInCents
