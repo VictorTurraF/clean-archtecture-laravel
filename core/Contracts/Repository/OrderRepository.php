@@ -10,7 +10,7 @@ interface OrderRepository {
 
     function existsById($sellerId): bool;
 
-    function create($input): Order;
+    function create(Order $input): Order;
 
     function findBySellerId($sellerId): array;
 
