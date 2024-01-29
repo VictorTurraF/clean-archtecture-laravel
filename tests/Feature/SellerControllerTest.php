@@ -57,7 +57,8 @@ class SellerControllerTest extends TestCase
 
         $response = $this->postJson('/api/seller', $sellerData);
 
-        $response->assertStatus(201)
+        $response
+            ->assertStatus(201)
             ->assertJson([
                 'name' => $sellerData['name'],
                 'email' => $sellerData['email']
