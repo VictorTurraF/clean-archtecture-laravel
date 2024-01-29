@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Seller;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'seller_id' => Seller::factory(),
+            'price_in_cents' => $this->faker->numberBetween(100, 100000), // Example price range
+            'payment_approved_at' => $this->faker->dateTime('-1 week'), // 70% chance of having a payment_approved_at date
         ];
     }
 }
