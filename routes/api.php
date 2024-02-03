@@ -27,5 +27,6 @@ Route::apiResource('seller', SellerController::class)->only([
 ]);
 
 Route::apiResource('order', OrderController::class)->only([
+    'index',
     'store'
 ]);

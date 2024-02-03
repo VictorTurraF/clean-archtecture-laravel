@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\External\Repository\EloquentOrderRepository;
 use App\Models\Order;
+use Core\Entity\Order as CoreOrder;
 use App\Models\Seller;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -52,5 +54,28 @@ class OrderControllerTest extends TestCase
         $this->assertEquals($response->json('id'), $foundOrder->id);
         $this->assertEquals($response->json('price.in_cents'), $foundOrder->price_in_cents);
         $this->assertEquals($response->json('payment_approved_at.iso_date'), $foundOrder->payment_approved_at->format('Y-m-d\TH:i'));
+    }
+
+    public function testListAllOrdersEndpoint()
+    {
+        // Arrange
+        $orders = Order::factory()->count(3)->create();
+        $transformedOrders = $orders
+            ->map(fn ($order) => EloquentOrderRepository::mapOrderToCoreOrder($order)->toArray())
+            ->toArray();
+
+        // Act
+        $response = $this->getJson('/api/order');
+
+        // Assert
+        $response
+            ->assertOk()
+            ->assertJson(
+                fn (AssertableJson $json) =>
+                    $json->has(3)
+            )
+            ->assertJson(
+                $transformedOrders
+            );
     }
 }
