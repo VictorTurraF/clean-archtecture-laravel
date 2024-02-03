@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SellerController;
-
+use App\Http\Controllers\SellerOrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +29,8 @@ Route::apiResource('sellers', SellerController::class)->only([
 Route::apiResource('orders', OrderController::class)->only([
     'index',
     'store'
+]);
+
+Route::apiResource('sellers.orders', SellerOrderController::class)->only([
+    'index'
 ]);
