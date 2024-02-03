@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Core\UseCase\ListAllOrdersBySellerUseCase;
 
 class SellerOrderController extends Controller
 {
-    public function index()
-    {
-        return response()->json([], 501);
+    public function index(
+        string $seller,
+        ListAllOrdersBySellerUseCase $useCase
+    ) {
+        $result = $useCase->execute($seller);
+
+        return response()->json($result, 200);
     }
 }
