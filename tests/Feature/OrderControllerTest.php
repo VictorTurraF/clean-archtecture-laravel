@@ -26,8 +26,8 @@ class OrderControllerTest extends TestCase
             // Add other attributes as needed
         ];
 
-        // Send a POST request to the /api/order endpoint
-        $response = $this->postJson('/api/order', $orderData);
+        // Send a POST request to the /api/orders endpoint
+        $response = $this->postJson('/api/orders', $orderData);
 
         // Assert that the response has a status code of 201 Created
         // and contains the expected JSON structure
@@ -65,7 +65,7 @@ class OrderControllerTest extends TestCase
             ->toArray();
 
         // Act
-        $response = $this->getJson('/api/order');
+        $response = $this->getJson('/api/orders');
 
         // Assert
         $response

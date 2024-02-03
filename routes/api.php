@@ -21,12 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('seller', SellerController::class)->only([
+Route::apiResource('sellers', SellerController::class)->only([
     'index',
     'store',
 ]);
 
-Route::apiResource('order', OrderController::class)->only([
+Route::apiResource('orders', OrderController::class)->only([
     'index',
     'store'
 ]);

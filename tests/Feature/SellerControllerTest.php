@@ -20,7 +20,7 @@ class SellerControllerTest extends TestCase
         $seller3 = Seller::factory()->create();
 
         // Send a GET request to the /api/sellers endpoint
-        $response = $this->getJson('/api/seller');
+        $response = $this->getJson('/api/sellers');
 
         // Assert that the response has a status code of 200 OK
         // and contains the expected JSON structure with the sellers' data
@@ -55,7 +55,7 @@ class SellerControllerTest extends TestCase
             'email' => $this->faker->unique()->safeEmail,
         ];
 
-        $response = $this->postJson('/api/seller', $sellerData);
+        $response = $this->postJson('/api/sellers', $sellerData);
 
         $response
             ->assertStatus(201)
@@ -84,7 +84,7 @@ class SellerControllerTest extends TestCase
         Seller::create($sellerData);
 
         // Attempt to create another seller with the same email
-        $response = $this->postJson('/api/seller', $sellerData);
+        $response = $this->postJson('/api/sellers', $sellerData);
 
         // Assert that the response status is 400 Bad Request
         // and contains the expected error message
