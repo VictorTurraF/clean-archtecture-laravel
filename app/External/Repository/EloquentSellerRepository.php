@@ -40,7 +40,7 @@ class EloquentSellerRepository implements SellerRepository
         return $sellers;
     }
 
-    private function mapSellerModelToCoreEntity(SellerModel $sellerModel): CoreSeller
+    public static function mapSellerModelToCoreEntity(SellerModel $sellerModel): CoreSeller
     {
         return new CoreSeller(
             [

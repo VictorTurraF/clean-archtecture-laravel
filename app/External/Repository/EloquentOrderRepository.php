@@ -62,7 +62,7 @@ class EloquentOrderRepository implements OrderRepository
             ->toArray();
     }
 
-    private function mapOrderToCoreOrder(Order $order): CoreOrder
+    public static function mapOrderToCoreOrder(Order $order): CoreOrder
     {
         return new CoreOrder([
             'seller_id' => $order->seller_id,
