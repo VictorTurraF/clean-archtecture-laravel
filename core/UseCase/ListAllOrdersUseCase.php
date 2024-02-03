@@ -11,7 +11,7 @@ class ListAllOrdersUseCase implements UseCase {
         private OrderRepository $orderRepo
     ) {}
 
-    public function execute($input):mixed
+    public function execute($input = null):mixed
     {
         $allOrders = $this->orderRepo->all();
 

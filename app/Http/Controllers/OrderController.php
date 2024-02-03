@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateOrderRequest;
 use Core\UseCase\CreateOrderUseCase;
+use Core\UseCase\ListAllOrdersUseCase;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return response()->json([], 501);
+    public function index(
+        ListAllOrdersUseCase $useCase
+    ) {
+        $result = $useCase->execute();
+
+        return response()->json($result, 200);
     }
 
     /**
