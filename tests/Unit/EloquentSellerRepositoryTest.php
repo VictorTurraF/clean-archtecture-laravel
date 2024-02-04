@@ -89,4 +89,17 @@ class EloquentSellerRepositoryTest extends TestCase
         $this->assertFalse($this->repository->existsById('nonexistent_id'));
     }
 
+    #[Depends('testCreateSeller')]
+    public function testShouldFindSellerById()
+    {
+        // Arrange
+        $sellerData = ['name' => 'John Doe', 'email' => 'john@example.com'];
+        $seller = $this->repository->create(new CoreSeller($sellerData));
+
+        // Act
+        $result = $this->repository->findById($seller->getId());
+
+        // Assert
+        $this->assertEquals($seller->getId(), $result->getId());
+    }
 }

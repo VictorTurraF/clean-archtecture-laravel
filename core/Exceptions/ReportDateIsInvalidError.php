@@ -5,13 +5,13 @@ namespace Core\Exceptions;
 use Exception;
 use Throwable;
 
-class SellerNameIsInvalidError extends Exception {
+class ReportDateIsInvalidError extends Exception {
     public function __construct(
         $message = null,
-        Throwable $previous = null,
         $code = 0,
+        Throwable $previous = null
     ) {
-        $message = $message ?? "Nome do vendedor é inválido.";
+        $message = $message ?? "Data informada para o relatório de vendas é invalida.";
         parent::__construct($message, $code, $previous);
     }
 }

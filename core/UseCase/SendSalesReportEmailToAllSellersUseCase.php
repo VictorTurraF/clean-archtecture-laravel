@@ -53,6 +53,8 @@ class SendSalesReportEmailToAllSellersUseCase implements UseCase
 
             $sentReport = $this->mailService->sendMail(
                 new SellerSalesReport(
+                    $seller,
+                    $this->date->todayAtTheStart(),
                     (int) round($totalSold),
                     (int) round($totalCommission)
                 )

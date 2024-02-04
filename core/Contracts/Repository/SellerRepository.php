@@ -14,4 +14,6 @@ interface SellerRepository {
 
     public function all(): array;
 
+    public function findById(string $sellerId): Seller;
+
 }

@@ -40,6 +40,13 @@ class EloquentSellerRepository implements SellerRepository
         return $sellers;
     }
 
+    public function findById(string $sellerId): CoreSeller
+    {
+        $seller = SellerModel::find($sellerId);
+
+        return $this->mapSellerModelToCoreEntity($seller);
+    }
+
     public static function mapSellerModelToCoreEntity(SellerModel $sellerModel): CoreSeller
     {
         return new CoreSeller(

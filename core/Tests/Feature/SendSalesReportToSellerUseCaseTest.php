@@ -7,6 +7,7 @@ use Core\Contracts\Repository\SellerRepository;
 use Core\Contracts\Services\SalesReportMailService;
 use Core\Entity\Dto\SellerSalesReport;
 use Core\Entity\Order;
+use Core\Entity\Seller;
 use Core\Exceptions\SellerNotFoundError;
 use Core\UseCase\SendSalesReportToSellerUseCase;
 use PHPUnit\Framework\TestCase;
@@ -19,6 +20,13 @@ class SendSalesReportToSellerUseCaseTest extends TestCase
         $sellerRepository = $this->createMock(SellerRepository::class);
         $orderRepository = $this->createMock(OrderRepository::class);
         $mailService = $this->createMock(SalesReportMailService::class);
+
+        $seller = new Seller([
+            'name' => 'John Smith',
+            'email' => 'john.smith@gmail.com',
+        ]);
+
+        $seller->setId('seller1');
 
         $input = [
             'seller_id' => 'seller1',
@@ -35,6 +43,11 @@ class SendSalesReportToSellerUseCaseTest extends TestCase
             ->with('seller1')
             ->willReturn(true);
 
+        $sellerRepository->expects($this->once())
+            ->method('findById')
+            ->with('seller1')
+            ->willReturn($seller);
+
         $orderRepository->expects($this->once())
             ->method('findByFilters')
             ->with([
@@ -45,8 +58,8 @@ class SendSalesReportToSellerUseCaseTest extends TestCase
 
         $mailService->expects($this->once())
             ->method('sendMail')
-            ->with(new SellerSalesReport(1500, 120))
-            ->willReturn(new SellerSalesReport(1500, 120)); // Mocking a successful mail service response
+            ->with(new SellerSalesReport($seller, "2023-01-01T00:00" ,1500, 120))
+            ->willReturn(new SellerSalesReport($seller, "2023-01-01T00:00", 1500, 120)); // Mocking a successful mail service response
 
         $useCase = new SendSalesReportToSellerUseCase($sellerRepository, $orderRepository, $mailService);
 

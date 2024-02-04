@@ -42,8 +42,12 @@ class SendSalesReportToSellerUseCase implements UseCase {
             0
         );
 
+        $seller = $this->sellerRepo->findById($input['seller_id']);
+
         $result = $this->mailService->sendMail(
             new SellerSalesReport(
+                $seller,
+                $input['date']."T00:00",
                 (int) round($totalSold),
                 (int) round($totalCommission)
             )

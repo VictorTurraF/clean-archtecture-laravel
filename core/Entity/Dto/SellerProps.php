@@ -26,7 +26,7 @@ class SellerProps {
             return new RequiredString($name);
         } catch (StringIsInvalidError $e) {
             $message = "Nome do vendedor informado é inválido: " . $e->getMessage();
-            throw new SellerNameIsInvalidError($e, $message);
+            throw new SellerNameIsInvalidError($message, $e);
         }
     }
 

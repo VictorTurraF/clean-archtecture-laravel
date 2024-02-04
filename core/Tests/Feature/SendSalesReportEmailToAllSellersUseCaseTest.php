@@ -53,8 +53,17 @@ class SendSalesReportEmailToAllSellersUseCaseTest extends TestCase
         $salesReportMailService->expects($this->exactly(count($sellers)))
             ->method('sendMail')
             ->willReturn(
-                new SellerSalesReport(1500, 120),
-                new SellerSalesReport(1400, 112)
+                new SellerSalesReport($sellers[0], "2023-01-01T00:00", 1500, 120),
+                new SellerSalesReport($sellers[1], "2023-01-01T00:00", 1400, 112)
+            );
+
+        $dateHelper->expects($this->exactly(4))
+            ->method('todayAtTheStart')
+            ->willReturn(
+                "2023-01-01T00:00",
+                "2023-01-01T00:00",
+                "2023-01-01T00:00",
+                "2023-01-01T00:00"
             );
 
         $useCase = new SendSalesReportEmailToAllSellersUseCase(
