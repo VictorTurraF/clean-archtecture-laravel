@@ -21,6 +21,11 @@ class IsoDate {
         return $this->isoDate;
     }
 
+    public function getDateTime()
+    {
+        return $this->date;
+    }
+
     private function validateDate($dateString)
     {
         $format = 'Y-m-d\TH:i';
