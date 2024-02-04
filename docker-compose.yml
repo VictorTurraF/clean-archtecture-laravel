@@ -48,6 +48,12 @@ services:
     networks:
       - lara-clean-arch
 
+  redis:
+    image: redis:latest
+    container_name: lara-clean-arch-redis
+    networks:
+      - lara-clean-arch
+
 volumes:
   lara-clean-arch-data:
 
