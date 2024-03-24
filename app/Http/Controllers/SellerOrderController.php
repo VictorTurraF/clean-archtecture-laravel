@@ -14,6 +14,8 @@ class SellerOrderController extends Controller
      * Seller's Orders
      *
      * List all orders from an specified seller with seller_id
+     *
+     * @param string $seller Seller ID
      */
     #[OpenApi\Operation(tags: ['order'], method: 'GET')]
     #[OpenApi\Response(factory: ListOrdersResponse::class, statusCode: 200)]
