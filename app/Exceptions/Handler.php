@@ -25,15 +25,8 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (SellerAlreadyExistsError $e) {
+            return new JsonResponse(['message' => $e->getMessage()], 400);
         });
-    }
-
-    public function render($request, Throwable $exception)
-    {
-        if ($exception instanceof SellerAlreadyExistsError) {
-            return new JsonResponse(['message' => $exception->getMessage()], 400);
-        }
     }
 }
