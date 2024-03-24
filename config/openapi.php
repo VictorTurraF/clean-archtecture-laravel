@@ -15,8 +15,8 @@ return [
 
             'servers' => [
                 [
-                    'url' => env('APP_URL'),
-                    'description' => null,
+                    'url' => "http://localhost:8000",
+                    'description' => "Local server",
                     'variables' => [],
                 ],
             ],
